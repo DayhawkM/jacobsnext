@@ -1,0 +1,75 @@
+{
+    "products": [
+      {
+        "id": 1,
+        "name": "Luxury Orthopedic Dog Bed",
+        "description": "A memory foam bed designed for ultimate canine comfort.",
+        "price": 49.99,
+        "image": "/images/dog-bed.jpg"
+      },
+      {
+        "id": 2,
+        "name": "Interactive Treat Dispensing Ball",
+        "description": "A durable ball that releases treats as your dog plays.",
+        "price": 14.99,
+        "image": "/images/treat-ball.jpg"
+      },
+      {
+        "id": 3,
+        "name": "Grooming Brush for Shedding Dogs",
+        "description": "A self-cleaning brush that removes loose fur easily.",
+        "price": 19.99,
+        "image": "/images/grooming-brush.jpg"
+      },
+      {
+        "id": 4,
+        "name": "Adjustable No-Pull Dog Harness",
+        "description": "A comfortable harness with reflective strips for safety.",
+        "price": 29.99,
+        "image": "/images/dog-harness.jpg"
+      },
+      {
+        "id": 5,
+        "name": "Healthy Organic Dog Treats",
+        "description": "Grain-free, organic treats made with real chicken.",
+        "price": 12.99,
+        "image": "/images/dog-treats.jpg"
+      },
+      {
+        "id": 6,
+        "name": "Chew-Resistant Plush Toy",
+        "description": "A durable plush toy designed for aggressive chewers.",
+        "price": 16.99,
+        "image": "/images/plush-toy.jpg"
+      },
+      {
+        "id": 7,
+        "name": "Automatic Pet Water Fountain",
+        "description": "A filtered water dispenser that keeps water fresh and clean.",
+        "price": 39.99,
+        "image": "/images/water-fountain.jpg"
+      },
+      {
+        "id": 8,
+        "name": "Portable Travel Dog Bowl",
+        "description": "A collapsible silicone bowl for food and water on the go.",
+        "price": 9.99,
+        "image": "/images/travel-bowl.jpg"
+      },
+      {
+        "id": 9,
+        "name": "LED Light-Up Dog Collar",
+        "description": "A rechargeable LED collar for night-time visibility.",
+        "price": 22.99,
+        "image": "/images/led-collar.jpg"
+      },
+      {
+        "id": 10,
+        "name": "Dog Training Clicker Set",
+        "description": "A set of clickers for positive reinforcement training.",
+        "price": 8.99,
+        "image": "/images/training-clicker.jpg"
+      }
+    ]
+  }
+  
