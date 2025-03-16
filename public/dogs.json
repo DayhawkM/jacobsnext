@@ -1,0 +1,88 @@
+{
+  "dogs": [
+      {
+          "id": 1,
+          "name": "Buddy",
+          "breed": "Labrador Retriever",
+          "description": "A friendly and energetic companion who loves to play fetch.",
+          "image": "/images/labrador.jpg"
+      },
+      {
+          "id": 2,
+          "name": "Daisy",
+          "breed": "Golden Retriever",
+          "description": "A loving and gentle dog, perfect for families with kids.",
+          "image": "/images/golden-retriever.jpg"
+      },
+      {
+          "id": 3,
+          "name": "Max",
+          "breed": "German Shepherd",
+          "description": "A loyal and intelligent dog who loves to learn new tricks.",
+          "image": "/images/german-shepherd.jpeg"
+      },
+      {
+          "id": 4,
+          "name": "Luna",
+          "breed": "Siberian Husky",
+          "description": "A beautiful and playful dog with a strong personality.",
+          "image": "/images/husky.jpg"
+      },
+      {
+          "id": 5,
+          "name": "Charlie",
+          "breed": "Beagle",
+          "description": "A curious and affectionate hound who loves to explore.",
+          "image": "/images/beagle.jpg"
+      },
+      {
+          "id": 6,
+          "name": "Bella",
+          "breed": "Border Collie",
+          "description": "An energetic and intelligent dog who excels in agility.",
+          "image": "/images/border-collie.jpg"
+      },
+      {
+          "id": 7,
+          "name": "Rocky",
+          "breed": "Bulldog",
+          "description": "A calm and affectionate companion who loves lounging around.",
+          "image": "/images/bulldog.jpg"
+      },
+      {
+          "id": 8,
+          "name": "Molly",
+          "breed": "Cocker Spaniel",
+          "description": "A sweet and affectionate dog with beautiful long ears.",
+          "image": "/images/cocker-spaniel.jpg"
+      },
+      {
+          "id": 9,
+          "name": "Duke",
+          "breed": "Rottweiler",
+          "description": "A strong and protective dog who is very loyal to his family.",
+          "image": "/images/rottweiler.jpg"
+      },
+      {
+          "id": 10,
+          "name": "Sadie",
+          "breed": "Shih Tzu",
+          "description": "A small and fluffy lap dog who loves attention and cuddles.",
+          "image": "/images/shih-tzu.jpg"
+      },
+      {
+          "id": 11,
+          "name": "Teddy",
+          "breed": "Poodle",
+          "description": "A highly intelligent and hypoallergenic companion.",
+          "image": "/images/poodle.jpg"
+      },
+      {
+          "id": 12,
+          "name": "Ruby",
+          "breed": "Dalmatian",
+          "description": "A lively and playful dog with a striking spotted coat.",
+          "image": "/images/dalmatian.jpg"
+      }
+  ]
+}
