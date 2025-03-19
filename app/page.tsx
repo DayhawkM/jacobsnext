@@ -33,7 +33,7 @@ export default function Home() {
   }, []);
 
   const bannerImages = {
-    spring: "/images/spring-banner.jpg",
+    spring: "/images/spring-banner.webp",
     summer: "/images/summer-banner.jpg",
     autumn: "/images/autumn-banner.jpg",
     winter: "/images/winter-banner.jpg",
