@@ -4,6 +4,7 @@ import Advert from "../advert";
 
 export default function Products() {
     const [productsByCategory, setProductsByCategory] = useState({});
+    const [season, setSeason] = useState("");
 
     useEffect(() => {
         const fetchData = async () => {
@@ -11,12 +12,29 @@ export default function Products() {
                 const response = await fetch("https://dayhawkm.github.io/sherlock2/products.json");
                 const data = await response.json();
 
-                // Group products by category
+                // Determine the current season
+                const getSeasonalTheme = () => {
+                  
+                    return "spring";
+                };
+                const currentSeason = getSeasonalTheme();
+                setSeason(currentSeason);
+
+                // Group products by category and apply discounts
                 const groupedProducts = data.products.reduce((acc, product) => {
                     if (!acc[product.category]) {
                         acc[product.category] = [];
                     }
-                    acc[product.category].push(product);
+
+                    // Determine if the product is on sale
+                    const isOnSale = product.discounted || (product.seasonalSale && product.seasonalSale.includes(currentSeason));
+
+                    acc[product.category].push({
+                        ...product,
+                        isOnSale,
+                        finalPrice: isOnSale && product.discountPrice ? product.discountPrice : product.price
+                    });
+
                     return acc;
                 }, {});
 
@@ -30,13 +48,13 @@ export default function Products() {
     }, []);
 
     return (
-        <div className="theme-spring">
+        <div className={`theme-${season}`}>
             <h1 className="text-center text-3xl font-bold mb-6">Welcome to Our Products Page</h1>
             <p className="text-center mb-4">Find the best products for this season!</p>
 
             {Object.keys(productsByCategory).map((category) => (
                 <div key={category} className="mb-8">
-                    {/* 🔥 Category Banner */}
+
                     <div className="category-banner">
                         <h2 className="category-title">{category}</h2>
                     </div>
@@ -50,6 +68,9 @@ export default function Products() {
                                 description={product.description}
                                 image={product.image}
                                 price={product.price}
+                                discountPrice={product.isOnSale ? product.discountPrice : undefined}
+                                isOnSale={product.isOnSale}
+                                season={season} 
                             />
                         ))}
                     </div>

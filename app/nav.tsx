@@ -6,7 +6,15 @@ import { auth } from '@/lib/firebase';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
 import { useRouter } from 'next/navigation';
 
-export default function Nav() {
+
+
+
+
+interface NavProps {
+  season: string;
+}
+
+export default function Nav({ season }: NavProps) {
   const pathname = usePathname();
   const [user, setUser] = useState<any>(null);
   const router = useRouter();
@@ -24,22 +32,22 @@ export default function Nav() {
   };
 
   return (
-    <nav className="sticky top-0 bg-gradient-to-r from-blue-500 to-purple-600 shadow-lg p-3">
+    <nav className={`sticky top-0 shadow-lg p-3 ${season}-nav`}>
       <ul className="list-none flex justify-center gap-6">
-        <li className="relative">
-          <Link className={`relative px-6 py-3 text-white font-semibold rounded-full transition-all duration-300 hover:bg-white hover:text-blue-500 hover:shadow-lg ${pathname === '/' ? 'bg-white text-blue-500' : 'bg-transparent border border-white'}`} href="/">Home</Link>
+        <li>
+          <Link className={`nav-link ${pathname === '/' ? 'active' : ''}`} href="/">Home</Link>
         </li>
-        <li className="relative">
-          <Link className={`relative px-6 py-3 text-white font-semibold rounded-full transition-all duration-300 hover:bg-white hover:text-blue-500 hover:shadow-lg ${pathname === '/products' ? 'bg-white text-blue-500' : 'bg-transparent border border-white'}`} href="/products">Products</Link>
+        <li>
+          <Link className={`nav-link ${pathname === '/products' ? 'active' : ''}`} href="/products">Products</Link>
         </li>
-        <li className="relative">
-          <Link className={`relative px-6 py-3 text-white font-semibold rounded-full transition-all duration-300 hover:bg-white hover:text-blue-500 hover:shadow-lg ${pathname === '/dogs' ? 'bg-white text-blue-500' : 'bg-transparent border border-white'}`} href="/dogs">Dogs</Link>
+        <li>
+          <Link className={`nav-link ${pathname === '/dogs' ? 'active' : ''}`} href="/dogs">Dogs</Link>
         </li>
-        <li className="relative">
+        <li>
           {user ? (
-            <button className="relative px-6 py-3 text-white font-semibold rounded-full transition-all duration-300 bg-red-500 hover:bg-white hover:text-red-500 hover:shadow-lg" onClick={handleLogout}>Logout</button>
+            <button className="nav-link logout" onClick={handleLogout}>Logout</button>
           ) : (
-            <Link className={`relative px-6 py-3 text-white font-semibold rounded-full transition-all duration-300 hover:bg-white hover:text-blue-500 hover:shadow-lg ${pathname === '/dashboard' ? 'bg-white text-blue-500' : 'bg-transparent border border-white'}`} href="/dashboard">Dashboard</Link>
+            <Link className={`nav-link ${pathname === '/dashboard' ? 'active' : ''}`} href="/dashboard">Dashboard</Link>
           )}
         </li>
       </ul>
