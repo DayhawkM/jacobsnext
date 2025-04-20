@@ -11,7 +11,7 @@ export default function Home() {
 
   useEffect(() => {
     const determineSeason = () => {
-      return "spring"; // Test by forcing a season
+      return "winter"; // Test by forcing a season
     };
 
     setSeason(determineSeason());

@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 
 
 function getSeasonalTheme(): string {
-  return "spring"; // ✅ Forces summer theme for testing
+  return "winter"; //
 }
 
 function getFontClass(season: string): string {
