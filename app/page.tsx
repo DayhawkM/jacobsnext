@@ -4,14 +4,32 @@ import Advert from "./advert";
 import Image from "next/image";
 import Head from "next/head";
 
+interface Product {
+  id: string;
+  name: string;
+  description: string;
+  image: string;
+  price: number;
+}
+
 export default function Home() {
-  const [products, setProducts] = useState([]);
-  const [randomProducts, setRandomProducts] = useState([]);
-  const [season, setSeason] = useState("");
+  const [products, setProducts] = useState<Product[]>([]); 
+  const [randomProducts, setRandomProducts] = useState<Product[]>([]); 
+  const [season, setSeason] = useState<string>(""); 
 
   useEffect(() => {
     const determineSeason = () => {
-      return "winter"; // Test by forcing a season
+    
+      const month = new Date().getMonth();
+      if (month >= 2 && month <= 4) {
+        return "spring";
+      } else if (month >= 5 && month <= 7) {
+        return "summer";
+      } else if (month >= 8 && month <= 10) {
+        return "autumn";
+      } else {
+        return "winter";
+      }
     };
 
     setSeason(determineSeason());
@@ -32,7 +50,7 @@ export default function Home() {
     fetchData();
   }, []);
 
-  const bannerImages = {
+  const bannerImages: { [key: string]: string } = {
     spring: "/images/spring-banner.webp",
     summer: "/images/summer-banner.jpg",
     autumn: "/images/autumn-banner.jpg",
@@ -68,18 +86,17 @@ export default function Home() {
         <section className="mb-6 p-4 bg-white shadow-lg rounded-lg">
           <h2 className="text-2xl font-semibold">
             {season === "winter"
-              ? " Urgent! Help Pets Stay Warm This Winter "
+              ? "Urgent! Help Pets Stay Warm This Winter"
               : season === "spring"
-              ? " New Beginnings: Help Rescue Pets This Spring! "
+              ? "New Beginnings: Help Rescue Pets This Spring!"
               : season === "summer"
-              ? " Keep Pets Safe This Summer! "
-              : " Give Pets a Cozy Autumn Home! "}
+              ? "Keep Pets Safe This Summer!"
+              : "Give Pets a Cozy Autumn Home!"}
           </h2>
           <p>
             {season === "winter" ? (
               <>
-                Winter is approaching, and our furry friends need your help.
-                This holiday season, Jacob's Pet Shop is doubling its efforts to support Sherlock Rescue Center.
+                Winter is approaching, and our furry friends need your help. This holiday season, Jacob's Pet Shop is doubling its efforts to support Sherlock Rescue Center.
                 <br />
                 <strong>We need your help!</strong> A portion of all sales during winter goes directly to supporting rescue efforts.
               </>
@@ -91,14 +108,12 @@ export default function Home() {
               </>
             ) : season === "summer" ? (
               <>
-                Summer can be tough for pets with high temperatures.  
-                <br />
+                Summer can be tough for pets with high temperatures. <br />
                 <strong>Keep pets hydrated!</strong> Every purchase comes with a free portable water bowl to ensure pets stay cool.
               </>
             ) : (
               <>
-                Autumn leaves are falling, but many pets still need food and shelter.
-                <br />
+                Autumn leaves are falling, but many pets still need food and shelter. <br />
                 <strong>We need your help!</strong> Jacob's Pet Shop supports local rescue efforts, making sure no pets are left in the cold.
               </>
             )}
@@ -109,17 +124,17 @@ export default function Home() {
         <section className="mb-6 p-4 bg-white shadow-lg rounded-lg">
           <h2 className="text-2xl font-semibold">
             {season === "winter"
-              ? " Winter Sale - Keep Your Pets Cozy! "
+              ? "Winter Sale - Keep Your Pets Cozy!"
               : season === "spring"
-              ? " Spring Sale - Fresh Deals for Happy Pets! "
+              ? "Spring Sale - Fresh Deals for Happy Pets!"
               : season === "summer"
-              ? " Summer Sale - Hot Deals for Cool Pets! "
-              : " Autumn Sale - Cozy Savings for Your Furry Friends! "}
+              ? "Summer Sale - Hot Deals for Cool Pets!"
+              : "Autumn Sale - Cozy Savings for Your Furry Friends!"}
           </h2>
           <p>
             {season === "winter" ? (
               <>
-                As temperatures drop, keep your pets warm with our **Winter Sale** on heated beds and insulated jackets!
+                As temperatures drop, keep your pets warm with our <strong>Winter Sale</strong> on heated beds and insulated jackets!
                 <br />
                 <strong>Limited-time stock—get yours now!</strong>
               </>
@@ -131,13 +146,13 @@ export default function Home() {
               </>
             ) : season === "summer" ? (
               <>
-                Keep your pets cool with **Summer Sale** deals on cooling mats and travel water bottles.
+                Keep your pets cool with <strong>Summer Sale</strong> deals on cooling mats and travel water bottles.
                 <br />
                 <strong>Stock up while supplies last!</strong>
               </>
             ) : (
               <>
-                Get ready for cozy nights with our **Autumn Sale** on warm pet blankets and seasonal treats!
+                Get ready for cozy nights with our <strong>Autumn Sale</strong> on warm pet blankets and seasonal treats!
                 <br />
                 <strong>Grab your autumn essentials today!</strong>
               </>
@@ -147,7 +162,7 @@ export default function Home() {
 
         {/* ✅ Featured Products */}
         <section className="mb-6 p-4 bg-white shadow-lg rounded-lg">
-          <h2 className="text-2xl font-semibold"> Featured Products</h2>
+          <h2 className="text-2xl font-semibold">Featured Products</h2>
           <p>Here are three top products picked just for you:</p>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             {randomProducts.map((product) => (
@@ -166,7 +181,7 @@ export default function Home() {
 
         {/* ✅ Discount Voucher Call-To-Action */}
         <section className="mb-6 p-4 bg-white shadow-lg rounded-lg text-center">
-          <h2 className="text-2xl font-semibold"> Get Your Discount Voucher!</h2>
+          <h2 className="text-2xl font-semibold">Get Your Discount Voucher!</h2>
           <p>Register today and receive an exclusive discount voucher for your first purchase.</p>
           <button className="mt-4 px-6 py-2 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700">
             Register Now

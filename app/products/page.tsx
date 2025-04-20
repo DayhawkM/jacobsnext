@@ -2,9 +2,27 @@
 import { useEffect, useState } from "react";
 import Advert from "../advert";
 
+interface Product {
+    id: string;
+    name: string;
+    description: string;
+    image: string;
+    price: number;
+    discounted?: boolean;
+    discountPrice?: number;
+    seasonalSale?: string[]; // Array of seasons the product is on sale
+    category: string;
+    isOnSale: boolean;
+    finalPrice: number;
+}
+
+interface ProductsByCategory {
+    [category: string]: Product[];
+}
+
 export default function Products() {
-    const [productsByCategory, setProductsByCategory] = useState({});
-    const [season, setSeason] = useState("");
+    const [productsByCategory, setProductsByCategory] = useState<ProductsByCategory>({});
+    const [season, setSeason] = useState<string>("");
 
     useEffect(() => {
         const fetchData = async () => {
@@ -12,26 +30,37 @@ export default function Products() {
                 const response = await fetch("https://dayhawkm.github.io/sherlock2/products.json");
                 const data = await response.json();
 
-                // Determine the current season
+               
                 const getSeasonalTheme = () => {
-                  
-                    return "spring";
+                    const month = new Date().getMonth();
+
+                
+                    if (month >= 2 && month <= 4) {
+                        return "spring";
+                    } else if (month >= 5 && month <= 7) {
+                        return "summer";
+                    } else if (month >= 8 && month <= 10) {
+                        return "autumn";
+                    } else {
+                        return "winter"; 
+                    }
                 };
+
+        
                 const currentSeason = getSeasonalTheme();
                 setSeason(currentSeason);
 
-                // Group products by category and apply discounts
-                const groupedProducts = data.products.reduce((acc, product) => {
+               
+                const groupedProducts = data.products.reduce((acc: ProductsByCategory, product: Product) => {
                     if (!acc[product.category]) {
                         acc[product.category] = [];
                     }
 
-                    // Determine if the product is on sale
                     const isOnSale = product.discounted || (product.seasonalSale && product.seasonalSale.includes(currentSeason));
 
                     acc[product.category].push({
                         ...product,
-                        isOnSale,
+                        isOnSale, // Add isOnSale to product
                         finalPrice: isOnSale && product.discountPrice ? product.discountPrice : product.price
                     });
 
@@ -45,7 +74,7 @@ export default function Products() {
         };
 
         fetchData();
-    }, []);
+    }, []); // Empty dependency array means it runs once on component mount
 
     return (
         <div className={`theme-${season}`}>
@@ -54,7 +83,6 @@ export default function Products() {
 
             {Object.keys(productsByCategory).map((category) => (
                 <div key={category} className="mb-8">
-
                     <div className="category-banner">
                         <h2 className="category-title">{category}</h2>
                     </div>
@@ -63,14 +91,13 @@ export default function Products() {
                         {productsByCategory[category].map((product) => (
                             <Advert
                                 key={product.id}
-                                id={product.id}
                                 name={product.name}
                                 description={product.description}
                                 image={product.image}
                                 price={product.price}
                                 discountPrice={product.isOnSale ? product.discountPrice : undefined}
                                 isOnSale={product.isOnSale}
-                                season={season} 
+                                season={season}
                             />
                         ))}
                     </div>
