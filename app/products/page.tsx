@@ -3,14 +3,13 @@ import { useEffect, useState } from "react";
 import Advert from "../advert";
 
 interface Product {
-    id: string;
+    id: number;
     name: string;
     description: string;
     image: string;
     price: number;
-    discounted?: boolean;
-    discountPrice?: number;
-    seasonalSale?: string[]; // Array of seasons the product is on sale
+    discountPrice: number;
+    seasonalSale: string[];
     category: string;
     isOnSale: boolean;
     finalPrice: number;
@@ -30,42 +29,34 @@ export default function Products() {
                 const response = await fetch("https://dayhawkm.github.io/sherlock2/products.json");
                 const data = await response.json();
 
-               
                 const getSeasonalTheme = () => {
                     const month = new Date().getMonth();
-
-                
-                    if (month >= 2 && month <= 4) {
-                        return "spring";
-                    } else if (month >= 5 && month <= 7) {
-                        return "summer";
-                    } else if (month >= 8 && month <= 10) {
-                        return "autumn";
-                    } else {
-                        return "winter"; 
-                    }
+                    if (month >= 2 && month <= 4) return "spring";
+                    if (month >= 5 && month <= 7) return "summer";
+                    if (month >= 8 && month <= 10) return "autumn";
+                    return "winter";
                 };
 
-        
                 const currentSeason = getSeasonalTheme();
                 setSeason(currentSeason);
 
-               
                 const groupedProducts = data.products.reduce((acc: ProductsByCategory, product: Product) => {
+                    const isOnSale = product.seasonalSale?.includes(currentSeason);
+                    const finalPrice = isOnSale ? product.discountPrice : product.price;
+
+                    const updatedProduct: Product = {
+                        ...product,/////SPREAD OPERATOR
+                        isOnSale,
+                        finalPrice,
+                    };
+
                     if (!acc[product.category]) {
                         acc[product.category] = [];
                     }
 
-                    const isOnSale = product.discounted || (product.seasonalSale && product.seasonalSale.includes(currentSeason));
-
-                    acc[product.category].push({
-                        ...product,
-                        isOnSale, // Add isOnSale to product
-                        finalPrice: isOnSale && product.discountPrice ? product.discountPrice : product.price
-                    });
-
+                    acc[product.category].push(updatedProduct);
                     return acc;
-                }, {});
+                }, {});//////////////////stores object value
 
                 setProductsByCategory(groupedProducts);
             } catch (error) {
@@ -74,7 +65,7 @@ export default function Products() {
         };
 
         fetchData();
-    }, []); // Empty dependency array means it runs once on component mount
+    }, []);////////////////////////////stores final value
 
     return (
         <div className={`theme-${season}`}>

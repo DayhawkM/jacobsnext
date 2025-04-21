@@ -1,6 +1,5 @@
 @import "tailwindcss";
 
-
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -27,77 +26,135 @@ body {
   transition: background-color 0.5s ease-in-out;
 }
 
-
+/* --------------------SPRING-------------------- */
+body.spring {
+  background-color: #fffff0;
+  color: #000000;
+}
 .spring-nav {
   background-color: yellowgreen;
 }
 .font-spring {
   font-family: "Georgia", serif;
 }
+body.spring .grid-container {
+  background-color: rgb(238, 238, 121);
+  border-radius: 100px;
+  padding: 30px;
+  box-shadow: 0px 4px 10px rgba(0, 128, 0, 0.2);
+}
+.spring-sale {
+  border: 3px solid #ffcc80;
+  background-color: #f5ffe8;
+  box-shadow: 0px 4px 10px rgba(50, 168, 50, 0.2);
+}
+.spring-sale .sale-badge {
+  background-color: yellowgreen;
+  color: white;
+}
+.spring-advert {
+  background-color: #fffbf2;
+  border: 3px solid #ffcc80;
+  border-radius: 15px;
+  box-shadow: 0px 4px 10px rgba(50, 168, 50, 0.2);
+}
+
+/* -------------------- SUMMER-------------------- */
 body.summer {
   background-color: #fef2dc;
-
   color: #d98a00;
-}
-.font-summer {
-  font-family: "Trebuchet MS", sans-serif;
 }
 .summer-nav {
   background-color: orange;
 }
-
-body.autumn {
-  background-color: #fdf6e3;
-
-  color: #b7410e;
+.font-summer {
+  font-family: "Trebuchet MS", sans-serif;
+}
+.summer-sale {
+  border: 3px solid orange;
+  background-color: #fff4d9;
+  box-shadow: 0px 4px 10px rgba(255, 165, 0, 0.3);
+}
+.summer-sale .sale-badge {
+  background-color: red;
+  color: white;
+}
+.summer-advert {
+  background-color: #fff4d9;
+  border: 3px solid orange;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(255, 165, 0, 0.3);
 }
 
+/* -------------------- AUTUMN-------------------- */
+body.autumn {
+  background-color: #fdf6e3;
+  color: #b7410e;
+}
+.autumn-nav {
+  background-color: grey;
+}
 .font-autumn {
   font-family: "Palatino Linotype", "Book Antiqua", serif;
 }
-
-.autumn-nav {
-  background-color: grey;;
+.autumn-sale {
+  border: 3px solid #b7410e;
+  background-color: #fae3cd;
+  box-shadow: 0px 4px 10px rgba(139, 69, 19, 0.3);
+}
+.autumn-sale .sale-badge {
+  background-color: #8b4513;
+  color: white;
+}
+.autumn-advert {
+  background-color: #fae3cd;
+  border: 3px solid #b7410e;
+  border-radius: 5px;
+  box-shadow: 0px 4px 10px rgba(139, 69, 19, 0.3);
 }
 
-
+/* --------------------  WINTER -------------------- */
 body.winter {
   background-color: #e0f7fa;
   color: #004d80;
 }
-
-.font-winter {
-  font-family: "Courier New", Courier, monospace;
-}
-
-
 .winter-nav {
   background-color: lightblue;
 }
+.font-winter {
+  font-family: "Courier New", Courier, monospace;
+}
+.winter-sale {
+  border: 3px solid #004d80;
+  background-color: #e0f7fa;
+  box-shadow: 0px 4px 10px rgba(0, 77, 128, 0.2);
+}
+.winter-sale .sale-badge {
+  background-color: navy;
+  color: white;
+}
+.winter-advert {
+  background-color: #e0f7fa;
+  border: 3px solid #004d80;
+  border-radius: 0px;
+  box-shadow: 0px 4px 10px rgba(0, 77, 128, 0.2);
+}
 
-/* Grid container for products */
+/* -------------------- SHARED- ------------------- */
+
 .grid-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 20px;
   padding: 20px;
   max-width: 1200px;
   margin: 0 auto;
 }
 
-body.spring .grid-container {
-  background-color:  rgb(238, 238, 121);
-  border-radius: 100px;
-  padding: 30px;
-  box-shadow: 0px 4px 10px rgba(0, 128, 0, 0.2);
-}
-
-/* Center the text */
 .text-center {
   text-align: center;
 }
 
-/* Product Card */
 .advert-card {
   background: white;
   border-radius: 10px;
@@ -110,12 +167,10 @@ body.spring .grid-container {
   align-items: center;
 }
 
-/* Hover effect */
 .advert-card:hover {
   transform: scale(1.05);
 }
 
-/* Product Image */
 .advert-image {
   width: 100%;
   max-width: 200px;
@@ -124,32 +179,28 @@ body.spring .grid-container {
   margin-bottom: 10px;
 }
 
-/* Title Styling */
 .advert-title {
   font-size: 1.5rem;
   font-weight: bold;
   margin-bottom: 8px;
 }
 
-/* Description Styling */
 .advert-description {
   font-size: 1rem;
   color: #555;
   margin-bottom: 8px;
 }
 
-/* Price Styling */
 .advert-price {
   font-size: 1.2rem;
   font-weight: bold;
-  color: #27ae60; /* Green for price */
+  color: #27ae60;
 }
 
-/* Breed Styling */
 .advert-breed {
   font-size: 1.1rem;
   font-weight: bold;
-  color: #e67e22; /* Orange for breed */
+  color: #e67e22;
 }
 
 .category-banner {
@@ -167,7 +218,7 @@ body.spring .grid-container {
   color: white;
   text-transform: uppercase;
 }
-/* Highlight Sale Items */
+
 .sale-badge {
   font-size: 0.9rem;
   font-weight: bold;
@@ -188,82 +239,41 @@ body.spring .grid-container {
   text-decoration: line-through;
 }
 
-/* 🌸 SPRING: Green & yellow sale items */
-.spring-sale {
-  border: 3px solid #ffcc80;
-  background-color: #f5ffe8;
-  box-shadow: 0px 4px 10px rgba(50, 168, 50, 0.2);
+/* -------------------- NAV-------------------- */
+.nav-link {
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+  text-decoration: none;
 }
 
-.spring-sale .sale-badge {
-  background-color: yellowgreen;
-  color: white;
+
+.spring-nav .active {
+  background-color: white;
+  color: yellowgreen;
+  border: 2px solid yellowgreen;
 }
 
-/* ☀️ SUMMER: Orange & bright sale items */
-.summer-sale {
-  border: 3px solid orange;
-  background-color: #fff4d9;
-  box-shadow: 0px 4px 10px rgba(255, 165, 0, 0.3);
+.summer-nav .active {
+  background-color: white;
+  color: orange;
+  border: 2px solid red;
 }
 
-.summer-sale .sale-badge {
-  background-color: red;
-  color: white;
+.autumn-nav .active {
+  background-color: white;
+  color: #b7410e;
+  border: 2px solid #8b4513;
 }
 
-/* 🍂 AUTUMN: Warm, brownish sale items */
-.autumn-sale {
-  border: 3px solid #b7410e;
-  background-color: #fae3cd;
-  box-shadow: 0px 4px 10px rgba(139, 69, 19, 0.3);
+.winter-nav .active {
+  background-color: white;
+  color: #004d80;
+  border: 2px solid navy;
 }
 
-.autumn-sale .sale-badge {
-  background-color: #8b4513;
-  color: white;
-}
 
-/* ❄️ WINTER: Cool, blue-tinted sale items */
-.winter-sale {
-  border: 3px solid #004d80;
-  background-color: #e0f7fa;
-  box-shadow: 0px 4px 10px rgba(0, 77, 128, 0.2);
-}
-
-.winter-sale .sale-badge {
-  background-color: navy;
-  color: white;
-}
-
-/* 🌸 SPRING - Soft, pastel-themed cards */
-.spring-advert {
-  background-color: #fffbf2;
-  border: 3px solid #ffcc80;
-  border-radius: 15px;
-  box-shadow: 0px 4px 10px rgba(50, 168, 50, 0.2);
-}
-
-/* ☀️ SUMMER - Bright, vibrant colors */
-.summer-advert {
-  background-color: #fff4d9;
-  border: 3px solid orange;
-  border-radius: 10px;
-  box-shadow: 0px 4px 10px rgba(255, 165, 0, 0.3);
-}
-
-/* 🍂 AUTUMN - Warm, cozy feel */
-.autumn-advert {
-  background-color: #fae3cd;
-  border: 3px solid #b7410e;
-  border-radius: 5px;
-  box-shadow: 0px 4px 10px rgba(139, 69, 19, 0.3);
-}
-
-/* ❄️ WINTER - Cool, crisp design */
-.winter-advert {
-  background-color: #e0f7fa;
-  border: 3px solid #004d80;
-  border-radius: 0px;
-  box-shadow: 0px 4px 10px rgba(0, 77, 128, 0.2);
+.nav-link:hover {
+  opacity: 0.85;
 }

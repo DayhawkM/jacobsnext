@@ -10,16 +10,18 @@ interface Product {
   description: string;
   image: string;
   price: number;
+  discountPrice?: number; 
+  isOnSale: boolean;
+  breed?: string; 
 }
 
 export default function Home() {
-  const [products, setProducts] = useState<Product[]>([]); 
-  const [randomProducts, setRandomProducts] = useState<Product[]>([]); 
-  const [season, setSeason] = useState<string>(""); 
+  const [products, setProducts] = useState<Product[]>([]);
+  const [randomProducts, setRandomProducts] = useState<Product[]>([]);
+  const [season, setSeason] = useState<string>("");
 
   useEffect(() => {
     const determineSeason = () => {
-    
       const month = new Date().getMonth();
       if (month >= 2 && month <= 4) {
         return "spring";
@@ -59,7 +61,6 @@ export default function Home() {
 
   return (
     <>
-      {/* ✅ Preload banner */}
       <Head>
         {season && bannerImages[season] && <link rel="preload" as="image" href={bannerImages[season]} />}
       </Head>
@@ -68,7 +69,6 @@ export default function Home() {
         <h1 className="text-center text-3xl font-bold mb-6">Welcome to Jacob's Pet Shop</h1>
         <p className="text-center mb-4">Discover top-quality pet products while supporting a great cause!</p>
 
-        {/* ✅ Seasonal Banner */}
         <div className="w-full flex justify-center mb-6">
           {season && bannerImages[season] && (
             <Image
@@ -82,7 +82,6 @@ export default function Home() {
           )}
         </div>
 
-        {/* ✅ Rescue & Awareness Section */}
         <section className="mb-6 p-4 bg-white shadow-lg rounded-lg">
           <h2 className="text-2xl font-semibold">
             {season === "winter"
@@ -120,7 +119,6 @@ export default function Home() {
           </p>
         </section>
 
-        {/* ✅ Seasonal Sales Section */}
         <section className="mb-6 p-4 bg-white shadow-lg rounded-lg">
           <h2 className="text-2xl font-semibold">
             {season === "winter"
@@ -160,7 +158,6 @@ export default function Home() {
           </p>
         </section>
 
-        {/* ✅ Featured Products */}
         <section className="mb-6 p-4 bg-white shadow-lg rounded-lg">
           <h2 className="text-2xl font-semibold">Featured Products</h2>
           <p>Here are three top products picked just for you:</p>
@@ -168,18 +165,20 @@ export default function Home() {
             {randomProducts.map((product) => (
               <Advert
                 key={product.id}
-                id={product.id}
                 name={product.name}
                 description={product.description}
                 image={product.image}
                 price={product.price}
+                discountPrice={product.discountPrice} 
+                isOnSale={product.isOnSale} 
+                breed={product.breed} 
                 season={season}
               />
             ))}
           </div>
         </section>
 
-        {/* ✅ Discount Voucher Call-To-Action */}
+       
         <section className="mb-6 p-4 bg-white shadow-lg rounded-lg text-center">
           <h2 className="text-2xl font-semibold">Get Your Discount Voucher!</h2>
           <p>Register today and receive an exclusive discount voucher for your first purchase.</p>

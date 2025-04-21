@@ -20,22 +20,21 @@ export default function Signup() {
             const userCredential = await createUserWithEmailAndPassword(auth, email, password);
             const user = userCredential.user;
 
-            // 🎟️ Generate a voucher code
+          
             const voucherCode = generateVoucherCode();
 
-            // 📝 Store the voucher in localStorage
+        
             if (user?.uid) {
                 localStorage.setItem(`voucher_${user.uid}`, voucherCode);
             }
 
-            // Redirect to dashboard
             router.push("/dashboard");
         } catch (err: any) {
             setError(err.message);
         }
     };
 
-    // Function to generate a random voucher code
+  
     const generateVoucherCode = () => {
         return `PET-${Math.random().toString(36).substring(2, 8).toUpperCase()}`;
     };
