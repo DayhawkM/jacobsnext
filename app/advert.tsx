@@ -1,12 +1,14 @@
+import Image from "next/image";
+
 interface AdvertProps {
-    name: string; 
-    description: string; 
+    name: string;
+    description: string;
     image: string;
-    price: number; 
-    discountPrice?: number; 
-    isOnSale: boolean; 
-    breed?: string; 
-    season: string; 
+    price: number;
+    discountPrice?: number;
+    isOnSale: boolean;
+    breed?: string;
+    season: string;
 }
 
 export default function Advert({
@@ -21,7 +23,16 @@ export default function Advert({
 }: AdvertProps) {
     return (
         <div className={`advert-card ${season}-advert ${isOnSale ? `${season}-sale` : ""}`}>
-            <img src={image} alt={name} className="advert-image" />
+            <div className="relative w-full h-64 mb-4">
+                <Image
+                    src={image}
+                    alt={name}
+                    width={400}
+                    height={256}
+                    className="advert-image rounded-md w-full object-cover"
+                    priority
+                />
+            </div>
             <h3 className="advert-title">{name}</h3>
             <p className="advert-description">{description}</p>
 

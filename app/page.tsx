@@ -10,9 +10,9 @@ interface Product {
   description: string;
   image: string;
   price: number;
-  discountPrice?: number; 
+  discountPrice?: number;
   isOnSale: boolean;
-  breed?: string; 
+  breed?: string;
 }
 
 export default function Home() {
@@ -54,15 +54,15 @@ export default function Home() {
 
   const bannerImages: { [key: string]: string } = {
     spring: "/images/spring-banner.webp",
-    summer: "/images/summer-banner.jpg",
-    autumn: "/images/autumn-banner.jpg",
-    winter: "/images/winter-banner.jpg",
+    summer: "/images/summer-banner.webp",
+    autumn: "/images/autumn-banner.webp",
+    winter: "/images/winter-banner.webp",
   };
 
   return (
     <>
       <Head>
-        {season && bannerImages[season] && <link rel="preload" as="image" href={bannerImages[season]} />}
+        <link rel="preload" as="image" href={bannerImages[season]} />
       </Head>
 
       <div className={`theme-${season}`}>
@@ -77,6 +77,7 @@ export default function Home() {
               width={1200}
               height={400}
               priority
+              layout="responsive"
               className="w-full max-w-4xl rounded-lg shadow-lg"
             />
           )}
@@ -87,10 +88,10 @@ export default function Home() {
             {season === "winter"
               ? "Urgent! Help Pets Stay Warm This Winter"
               : season === "spring"
-              ? "New Beginnings: Help Rescue Pets This Spring!"
-              : season === "summer"
-              ? "Keep Pets Safe This Summer!"
-              : "Give Pets a Cozy Autumn Home!"}
+                ? "New Beginnings: Help Rescue Pets This Spring!"
+                : season === "summer"
+                  ? "Keep Pets Safe This Summer!"
+                  : "Give Pets a Cozy Autumn Home!"}
           </h2>
           <p>
             {season === "winter" ? (
@@ -124,10 +125,10 @@ export default function Home() {
             {season === "winter"
               ? "Winter Sale - Keep Your Pets Cozy!"
               : season === "spring"
-              ? "Spring Sale - Fresh Deals for Happy Pets!"
-              : season === "summer"
-              ? "Summer Sale - Hot Deals for Cool Pets!"
-              : "Autumn Sale - Cozy Savings for Your Furry Friends!"}
+                ? "Spring Sale - Fresh Deals for Happy Pets!"
+                : season === "summer"
+                  ? "Summer Sale - Hot Deals for Cool Pets!"
+                  : "Autumn Sale - Cozy Savings for Your Furry Friends!"}
           </h2>
           <p>
             {season === "winter" ? (
@@ -169,16 +170,16 @@ export default function Home() {
                 description={product.description}
                 image={product.image}
                 price={product.price}
-                discountPrice={product.discountPrice} 
-                isOnSale={product.isOnSale} 
-                breed={product.breed} 
+                discountPrice={product.discountPrice}
+                isOnSale={product.isOnSale}
+                breed={product.breed}
                 season={season}
               />
             ))}
           </div>
         </section>
 
-       
+
         <section className="mb-6 p-4 bg-white shadow-lg rounded-lg text-center">
           <h2 className="text-2xl font-semibold">Get Your Discount Voucher!</h2>
           <p>Register today and receive an exclusive discount voucher for your first purchase.</p>
