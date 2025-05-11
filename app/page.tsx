@@ -33,22 +33,21 @@ export default function Home() {
         return "winter";
       }
     };
-
+  
     setSeason(determineSeason());
+  }, []);
+  
 
+  useEffect(() => {
     const fetchData = async () => {
-      try {
-        const response = await fetch("https://dayhawkm.github.io/sherlock2/products.json");
-        const data = await response.json();
-        setProducts(data.products);
-
-        const shuffled = [...data.products].sort(() => 0.5 - Math.random());
-        setRandomProducts(shuffled.slice(0, 3));
-      } catch (error) {
-        console.error("Error fetching JSON:", error);
-      }
+      const response = await fetch("https://dayhawkm.github.io/sherlock2/products.json");
+      const data = await response.json();
+      setProducts(data.products);
+  
+      const shuffled = [...data.products].sort(() => 0.5 - Math.random());
+      setRandomProducts(shuffled.slice(0, 3));
     };
-
+  
     fetchData();
   }, []);
 
@@ -65,7 +64,7 @@ export default function Home() {
         <link rel="preload" as="image" href={bannerImages[season]} />
       </Head>
 
-      <div className={`theme-${season}`}>
+      <div>
         <h1 className="text-center text-3xl font-bold mb-6">Welcome to Jacob's Pet Shop</h1>
         <p className="text-center mb-4">Discover top-quality pet products while supporting a great cause!</p>
 

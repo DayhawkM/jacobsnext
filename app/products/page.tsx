@@ -25,48 +25,43 @@ export default function Products() {
 
     useEffect(() => {
         const fetchData = async () => {
-            try {
-                const response = await fetch("https://dayhawkm.github.io/sherlock2/products.json");
-                const data = await response.json();
-
-                const getSeasonalTheme = () => {
-                    const month = new Date().getMonth();
-                    if (month >= 2 && month <= 4) return "spring";
-                    if (month >= 5 && month <= 7) return "summer";
-                    if (month >= 8 && month <= 10) return "autumn";
-                    return "winter";
-                };
-
-                const currentSeason = getSeasonalTheme();
-                setSeason(currentSeason);
-
-                const groupedProducts = data.products.reduce((acc: ProductsByCategory, product: Product) => {
-                    const isOnSale = product.seasonalSale?.includes(currentSeason);
-                    const finalPrice = isOnSale ? product.discountPrice : product.price;
-
-                    const updatedProduct: Product = {
-                        ...product,/////SPREAD OPERATOR
-                        isOnSale,
-                        finalPrice,
-                    };
-
-                    if (!acc[product.category]) {
-                        acc[product.category] = [];
-                    }
-
-                    acc[product.category].push(updatedProduct);
-                    return acc;
-                }, {});//////////////////stores object value
-
-                setProductsByCategory(groupedProducts);
-            } catch (error) {
-                console.error("Error fetching JSON:", error);
+          const response = await fetch("https://dayhawkm.github.io/sherlock2/products.json");
+          const data = await response.json();
+      
+          const getSeasonalTheme = () => {
+            const month = new Date().getMonth();
+            if (month >= 2 && month <= 4) return "spring";
+            if (month >= 5 && month <= 7) return "summer";
+            if (month >= 8 && month <= 10) return "autumn";
+            return "winter";
+          };
+      
+          const currentSeason = getSeasonalTheme();
+          setSeason(currentSeason);
+      
+          const groupedProducts = data.products.reduce((acc: ProductsByCategory, product: Product) => {
+            const isOnSale = product.seasonalSale?.includes(currentSeason);
+            const finalPrice = isOnSale ? product.discountPrice : product.price;
+      
+            const updatedProduct: Product = {
+              ...product,
+              isOnSale,
+              finalPrice,
+            };
+      
+            if (!acc[product.category]) {
+              acc[product.category] = [];
             }
+      
+            acc[product.category].push(updatedProduct);
+            return acc;
+          }, {});
+      
+          setProductsByCategory(groupedProducts);
         };
-
+      
         fetchData();
-    }, []);////////////////////////////stores final value
-
+      }, []);
     return (
         <div className={`theme-${season}`}>
             <h1 className="text-center text-3xl font-bold mb-6">Welcome to Our Products Page</h1>
